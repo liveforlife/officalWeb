@@ -1,0 +1,21 @@
+{
+  "name": "officalWebsite",
+  "description": "officalWebsite",
+  "main": "",
+  "authors": [
+    "chency"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+	"jquery":"*",
+	"bootstrap":"*"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

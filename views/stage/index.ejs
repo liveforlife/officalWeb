@@ -1,0 +1,54 @@
+<% include header.ejs %>
+<div style="margin-top: 300px;">
+	<span>dsfdshjh</span>
+	<button  class="btn btn-primary" onclick="modifyCookie()">修改cookie</button>
+</div>
+<script>
+	function setCookie(c_name,value,expiresDay){
+		if(!getCokie(c_name)){
+			var exday=new Date();
+			exday.setDate(exday.getDate()+expiresDay);
+			document.cookie=c_name+'='+escape(value)+((expiresDay==null)?"":";expires="+exday.toGMTString());
+		}
+	}
+	
+	function getCokie(c_name){
+		if(document.cookie.length>0){
+			var c_start=document.cookie.indexOf(c_name+'=');
+			if(c_start!=-1){
+				c_start=c_start+c_name.length+1;
+				var c_end=document.cookie.indexOf(';',c_start);
+				if(c_end==-1) c_end=document.cookie.length;
+				return unescape(document.cookie.substring(c_start,c_end));
+			}
+		}
+		return '';
+	}
+	
+	function delCookie(c_name){
+		var exdate=new Date();
+		exdate.setDate(exdate.getDate()-1);
+		var cval=getCokie(c_name);
+		if(cval){
+			document.cookie=c_name+'='+cval+';expires='+exdate.toGMTString();
+		}
+	}
+	
+	function modifyCookie(){
+		/*setCookie('name','passager',2);
+		console.log(getCokie('name'));
+		console.log(document.cookie);
+		delCookie('name');
+		console.log(document.cookie);*/
+		$.ajax({
+			type:"post",
+			url:"/users/type.action",
+			async:true,
+			success:function(date){
+				console.log(date);
+			}
+		});
+	}
+</script>
+<% include footer.ejs %>
+

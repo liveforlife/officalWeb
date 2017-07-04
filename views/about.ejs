@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>关于</title>
+    <% include stage/quote.ejs %>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+    	
+    	.image-1{
+    		    		overflow: hidden;
+    	}
+    	.imageText{
+    		position: absolute;bottom: -40px;left: 0px;color: #FFF;text-align: center;width: 300px;
+    		background-color: rgba(1,0,0,0.4);padding: 10px;
+    		display: inline;
+    		transition: 0.5s;
+    	}
+    	.image-1:hover .imageText{
+    		bottom: 0px;
+    	}
+    </style>
+  </head>
+  <body>
+  	<% include header.ejs%>
+   <div>
+		<div class="row" style="margin: 40px 200px;padding: 0px;">
+			<h2 style="">
+				简介
+			</h2>
+			<hr style="border-style:inset;border-width: 1px;" />
+			<div class="row">
+				<img class="col-xs-6 col-md-4" src="/images/logo(1).jpg" />
+				<p class="col-xs-12 col-md-8" style="font-size: 20px;color: #777;">
+					蚂蚁金服集团旗下及相关业务包括生活服务平台支付宝、移动理财平台蚂蚁财富、云计算服务平台蚂蚁金融云、独立第三方信用评价体系芝麻信用以及网商银行等。另外，蚂蚁金服也与投资控股的公司及关联公司一起，在业务和服务层面通力合作，深度整合共推商业生态系
+				</p>
+			</div>
+		</div>
+		<div class="row" style="margin: 40px 200px;padding: 0px;">
+			<h2 style="">
+					环境介绍
+			</h2>
+			<hr style="border-style:inset;border-width: 1px;" />
+			<div>
+				<div class="image-1" style="position: relative;width: 300px;">
+					<img src="/images/logo(1).jpg" style="width: 300px;" />
+					<span class="imageText">团结友善</span>
+				</div>
+			</div>
+		</div>
+		<div class="row col-md-12">
+			<h2 class=" left"></h2>
+		</div>
+   </div>
+    <% include footer.ejs%>
+   <script src="/js/common.js"></script>
+   <script type="text/javascript">
+   		
+   </script>
+  </body>
+</html>
