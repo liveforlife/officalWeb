@@ -1,7 +1,9 @@
 var express = require('express');
+var multer=require('multer');
 
 var app=new express();
 var router = express.Router();
+var upload=multer({dest:'public/uploads/'});
 var dbLogin=require('../models/login.js');
 var cookieParser = require('cookie-parser');
 
@@ -20,7 +22,8 @@ router.post('/login', function(req, res) {
 			 if(doc.password===req.body.password){
 				 console.log('33');
 				 res.cookie('name',req.body.name,{maxAge:3,httpOnly:true});
-				 return res.redirect('./login');
+				 req.session.password=doc.password;
+				 return res.redirect('./index');
 			 }else{
 				 res.render('stage/login',{tips:'密码不正确，请重新输入；'});
 			 }
@@ -47,7 +50,8 @@ router.post('/register', function(req, res) {
 
 router.get('/index',function(req,res){
 	     console.log(req.cookies);
-	     if(req.cookies.name){
+	     
+	     if(req.session.password){
 	    	 res.render('stage/index');
 	     }else{
 	    	 res.cookie('isVisit',1,{maxAge:60*1000});
@@ -102,6 +106,16 @@ router.post('/modifyPassword.action',function(req,res){
 
 router.post('/type.action',function(req,res){
 	res.json(JSON.stringify({message:'success'}));
+});
+
+router.get('/getIndex',function(req,res){
+	
+});
+
+router.post('/writeIndex',upload.single('ppt'),function(req,res,next){
+	console.log(req.file);
+	console.log(req.body);
+	res.send({ret_code:'0'});
 });
 
 module.exports = router;

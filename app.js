@@ -27,16 +27,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
+
+ app.use(session({//挂在路由之上
+     secret: '12345',
+     name: 'testapp',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
+     cookie: {maxAge: 80000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+     resave: false,
+     saveUninitialized: true,
+ }));
+
 app.use('/', routes);
 app.use('/users', users);
 
-app.use(session({
-  name: 'chency',
-  secret: 'chyingp', // 用来对session id相关的cookie进行签名
-  cookie: {
-    maxAge: 10 * 1000 // 有效期，单位是毫秒
-  }
-}));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,8 +1,83 @@
 <% include header.ejs %>
-<div style="margin-top: 300px;">
-	<span>dsfdshjh</span>
-	<button  class="btn btn-primary" onclick="modifyCookie()">修改cookie</button>
+<div class="main-container">
+	<script type="text/javascript">
+			try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+		</script>
+	<div class="main-container-inner">
+		<div class="sidebar" id="sidebar">
+			<ul class="nav nav-list">
+				<li >
+					<a href="#" class="dropdown-toggle"> 
+						<i class="icon-dashboard"></i>
+						<span class="menu-text"> 首页 </span>
+						<b class="arrow icon-angle-down"></b>
+					</a>
+					<ul class="submenu">
+						<li>
+							<a href="buttons.html">
+								<i class="icon-double-angle-right"></i>
+								轮播
+							</a>
+						</li>
+		
+						<li>
+							<a href="treeview.html">
+								<i class="icon-double-angle-right"></i>
+								介绍
+							</a>
+						</li>
+					</ul>
+				</li>
+		
+				<li>
+					<a href="typography.html">
+						<i class="icon-text-width"></i>
+						<span class="menu-text"> 关于 </span>
+					</a>
+				</li>
+		
+				<li>
+					<a href="#" >
+						<i class="icon-desktop"></i>
+						<span class="menu-text"> 合作申请 </span>
+		
+						
+					</a>
+				</li>
+		
+				<li>
+					<a href="#" class="dropdown-toggle">
+						<i class="icon-list"></i>
+						<span class="menu-text"> 新闻 </span>
+					</a>
+				</li>
+		
+			</ul><!-- /.nav-list -->
+		</div>
+		<div class="main-content">
+			<div class="breadcrumbs" id="breadcrumbs">
+				<script type="text/javascript">
+					try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+				</script>
+	
+				<ul class="breadcrumb">
+					<li>
+						<i class="icon-home home-icon"></i>
+						<a href="#">首页</a>
+					</li>
+					<li class="active">控制台</li>
+				</ul><!-- .breadcrumb -->
+				<div>
+					<form action="/users/writeIndex" method="post" enctype="multipart/form-data">
+						<input type="file" name="ppt" multiple="multiple"/>
+						<button type="submit">提交文件</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+<script src="/js/ace.min.js"></script>
 <script>
 	function setCookie(c_name,value,expiresDay){
 		if(!getCokie(c_name)){

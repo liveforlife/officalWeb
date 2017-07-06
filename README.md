@@ -2,6 +2,8 @@
 
 # llll
 
+#启动mongdb
+D:\XX\bin>mongod --dbpath="D:\XX"
 
 
 ## Usage
