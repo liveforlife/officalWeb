@@ -18,13 +18,16 @@
     	.image-1:hover .imageText{
     		bottom: 0px;
     	}
+    	.aboutRow{
+    		margin: 40px 200px;padding: 0px;
+    	}
     </style>
   </head>
   <body>
   	<% include header.ejs%>
-   <div>
-		<div class="row" style="margin: 40px 200px;padding: 0px;">
-			<h2 style="">
+   <div >
+		<div class="row " style="margin: 40px 200px;padding: 0px;">
+			<h2 >
 				简介
 			</h2>
 			<hr style="border-style:inset;border-width: 1px;" />
@@ -40,8 +43,20 @@
 					环境介绍
 			</h2>
 			<hr style="border-style:inset;border-width: 1px;" />
-			<div>
-				<div class="image-1" style="position: relative;width: 300px;">
+			<div id="aboutModule">
+				<div class="image-1" style="position: relative;width: 300px;float: left;margin-right:20px ;">
+					<img src="/images/logo(1).jpg" style="width: 300px;" />
+					<span class="imageText">团结友善</span>
+				</div>
+				<div class="image-1" style="position: relative;width: 300px;float: left;margin-right:20px ;">
+					<img src="/images/logo(1).jpg" style="width: 300px;" />
+					<span class="imageText">团结友善</span>
+				</div>
+				<div class="image-1" style="position: relative;width: 300px;float: left;margin-right:20px ;">
+					<img src="/images/logo(1).jpg" style="width: 300px;" />
+					<span class="imageText">团结友善</span>
+				</div>
+				<div class="image-1" style="position: relative;width: 300px;float: left;margin-right:20px ;">
 					<img src="/images/logo(1).jpg" style="width: 300px;" />
 					<span class="imageText">团结友善</span>
 				</div>
@@ -54,7 +69,28 @@
     <% include footer.ejs%>
    <script src="/js/common.js"></script>
    <script type="text/javascript">
-   		
+   		$.ajax({
+   			type:"get",
+   			url:"/users/getAbout.action",
+   			async:true,
+   			success:function(data){
+   				console.log(data);
+   				if(data.massage=='success'){
+   					console.log(data.docs);
+   					var module=document.getElementById('aboutModule');
+   					var docs=data.docs;
+   					var string='';
+   					$.each(docs,function(i,index){
+   						string +='<div class="image-1" style="position: relative;width: 300px;float: left;margin-right:20px ;margin-bottom:20px">'
+												+'<img src="'+index.png+'" style="width: 300px;" />'
+												+'<span class="imageText">'+index.introduce+'</span></div>	</div>';
+   					})
+   					module.innerHTML=string;
+   				}else{
+   					
+   				}
+   			}
+   		});
    </script>
   </body>
 </html>

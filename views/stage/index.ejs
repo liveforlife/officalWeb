@@ -68,8 +68,10 @@
 					<li class="active">控制台</li>
 				</ul><!-- .breadcrumb -->
 				<div>
-					<form action="/users/writeIndex" method="post" enctype="multipart/form-data">
-						<input type="file" name="ppt" multiple="multiple"/>
+					<form action="writeAbout.action" method="post" enctype="multipart/form-data">
+						<input type="text" name="title" placeholder="题目"/>
+						<input type="text" name="introduce" placeholder="介绍" />
+						<input type="file" name="about" required accept=".jpg,.png"/>
 						<button type="submit">提交文件</button>
 					</form>
 				</div>

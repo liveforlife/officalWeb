@@ -3,10 +3,21 @@ var multer=require('multer');
 
 var app=new express();
 var router = express.Router();
-var upload=multer({dest:'public/uploads/'});
 var dbLogin=require('../models/login.js');
 var cookieParser = require('cookie-parser');
 
+var dbAbout=require('../models/about.js');
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/uploads');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+})
+
+var upload = multer({ storage: storage })
 app.use(cookieParser());
 
 /* GET users listing. */
@@ -115,7 +126,37 @@ router.get('/getIndex',function(req,res){
 router.post('/writeIndex',upload.single('ppt'),function(req,res,next){
 	console.log(req.file);
 	console.log(req.body);
-	res.send({ret_code:'0'});
+	res.redirect('./index');
 });
+
+router.get('/getAbout.action',function(req,res){
+	dbAbout.find({},function(err,docs){
+		console.log(docs);
+		if(docs){
+			return res.json({'massage':'success',docs});
+		}
+	});
+});
+
+router.post('/writeAbout.action',upload.single('about'),function(req,res,next){
+	var about={
+		'title':req.body.title,
+		'introduce':req.body.introduce,
+		'png':"/uploads/"+req.file.originalname
+	}
+	console.log(about);
+	var aboutMo=new dbAbout(about);
+	aboutMo.save(function(err){
+		if(err){
+			
+		}else{
+			res.redirect('./index');
+		}
+	});
+	
+});
+
+
+
 
 module.exports = router;
